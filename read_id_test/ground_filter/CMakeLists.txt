@@ -48,9 +48,6 @@ include_directories(
   $ENV{HOME}/dora/apis/c/node #dora的头文件路径 node_api.h
   $ENV{HOME}/dora/apis/c/operator
   ${CURRENT_DIR}/include
-  
-  $ENV{HOME}/dora/examples/c++-ros2-dataflow/build/ #C++ros的头文件路径
-  
 )
 
 add_executable(demo demo.cpp)

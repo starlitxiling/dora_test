@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 # set compiler
-set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
+# set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
 
 project(test_c_node)
 if(NOT CMAKE_BUILD_TYPE)
@@ -29,7 +29,6 @@ include_directories(
   $ENV{HOME}/dora/apis/c/node #dora的头文件路径 node_api.h
   #/home/nvidia/dora_project/dora/apis/c/node
   $ENV{HOME}/dora/apis/c/operator
-  $ENV{HOME}/dora/examples/c++-ros2-dataflow/build/ #C++ros的头文件路径
   
 )
 

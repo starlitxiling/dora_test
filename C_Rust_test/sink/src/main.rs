@@ -1,6 +1,6 @@
 use csv::Writer;
 use dora_node_api::arrow::array::{AsArray, PrimitiveArray};
-use dora_node_api::arrow::datatypes::UInt64Type;
+use dora_node_api::arrow::datatypes::UInt8Type;
 use dora_node_api::{self, DoraNode, Event};
 use eyre::ContextCompat;
 use std::collections::HashMap;
@@ -44,11 +44,12 @@ fn main() -> eyre::Result<()> {
                 metadata: _,
             } => {
                 // check if new size bracket
-                let array: &PrimitiveArray<UInt64Type> =
+                println!("data: {:?}", data);
+                let array: &PrimitiveArray<UInt8Type> =
                     data.as_primitive_opt().context("not a primitive array")?;
                 let array = array.values();
                 let time_u64 = array.get(0).context("could not slice data")?;
-                let t_send = uhlc::NTP64(*time_u64);
+                let t_send = uhlc::NTP64((*time_u64).into());
 
                 // .to_vec() Data Latency
                 // let _owned_data = array.to_vec();

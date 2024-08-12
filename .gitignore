@@ -1,9 +1,3 @@
-# Ignore all build directories
-**/build/
-
-# Ignore all out directories
-**/out/
-
-# Ignore all target directories
-**/target/
-
+**/build
+**/out
+**/target
