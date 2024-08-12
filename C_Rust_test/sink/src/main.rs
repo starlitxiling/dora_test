@@ -33,7 +33,8 @@ fn main() -> eyre::Result<()> {
                 };
                 
                 match str::from_utf8(bytes) {
-                    Ok(s) => println!("received message {}: {}", count, s),
+                    // Ok(s) => println!("received message {}: {}", count, s),
+                    Ok(s) => println!("{}", count),
                     Err(e) => println!("failed: {}", e),
                 }
             }
