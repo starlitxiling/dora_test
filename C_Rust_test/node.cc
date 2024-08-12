@@ -14,10 +14,11 @@ const int max_messages = 10000; // 最大消息数
 
 int run(void *dora_context)
 {
-    unsigned char counter[3];
+    // unsigned char counter[3];
+    char counter[12] = "songyunyang";
 
     to_exit_process = false;
-    counter[0] = 0;
+    // counter[0] = 0;
     while (!to_exit_process && message_count < max_messages)
     {
         void *event = dora_next_event(dora_context);
@@ -31,14 +32,14 @@ int run(void *dora_context)
 
         if (ty == DoraEventType_Input)
         {
-            char* output_data = (char *)counter;
+            char* output_data = counter;
 
-            counter[0] += 1;
-            if (counter[0] >= 255)
-                counter[0] = 0;
+            // counter[0] += 1;
+            // if (counter[0] >= 255)   
+                // counter[0] = 0;
 
             std::string out_id = "counter_A";
-            size_t data_len = 3;
+            size_t data_len = 12;
             int resultend = dora_send_output(dora_context, &out_id[0], out_id.length(), output_data, data_len);
 
             message_count++; // 递增消息计数器
