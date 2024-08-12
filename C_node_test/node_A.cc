@@ -1,8 +1,6 @@
 extern "C"
 {
 #include "node_api.h"   
-#include "operator_api.h"
-#include "operator_types.h"
 }
 
 #include <iostream>

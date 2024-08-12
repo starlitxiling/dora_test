@@ -20,7 +20,7 @@ fn main() -> eyre::Result<()> {
                         }
 
                         let output = format!(
-                            "operator received random value {value:#x} from node1" 
+                            "received random value {value:#x} from node1" 
                         );
                         println!("{output}");
                     }
@@ -31,7 +31,7 @@ fn main() -> eyre::Result<()> {
                         }
 
                         let output = format!(
-                            "operator received random value {value:#x} from node2"
+                            "received random value {value:#x} from node2"
                         );
                         println!("{output}");
                     }

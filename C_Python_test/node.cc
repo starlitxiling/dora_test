@@ -1,8 +1,6 @@
 extern "C"
 {
 #include "node_api.h"
-#include "operator_api.h"
-#include "operator_types.h"
 }
 
 #include <iostream>
@@ -20,8 +18,7 @@ int run(void *dora_context)
     counter[0] = 0;
     while (!to_exit_process && message_count < max_messages)
     {
-        void *event = dora_next_event(dora_context);
-        if (event == NULL)
+        void *event = dora_next_event(dora_context); if (event == NULL)
         {
             printf("[c node] ERROR: unexpected end of event\n");
             return -1;

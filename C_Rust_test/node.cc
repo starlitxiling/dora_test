@@ -1,24 +1,39 @@
 extern "C"
 {
 #include "node_api.h"
-#include "operator_api.h"
-#include "operator_types.h"
 }
 
 #include <iostream>
 #include <vector>
+#include <random>
+#include <ctime>
 
 bool to_exit_process;
 int message_count = 0; // 消息计数器
 const int max_messages = 10000; // 最大消息数
 
+std::string generate_random_string(size_t length)
+{
+    const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    std::default_random_engine engine(static_cast<unsigned int>(time(0)));
+    std::uniform_int_distribution<> dist(0, sizeof(charset) - 2);
+    std::string random_string;
+
+    for (size_t i = 0; i < length; ++i)
+    {
+        random_string += charset[dist(engine)];
+    }
+
+    return random_string;
+}
+
 int run(void *dora_context)
 {
-    // unsigned char counter[3];
-    char counter[12] = "songyunyang";
-
     to_exit_process = false;
-    // counter[0] = 0;
+
+    std::default_random_engine engine(static_cast<unsigned int>(time(0)));
+    std::uniform_int_distribution<> length_dist(5, 20); // 随机字符串长度范围 5 到 20
+
     while (!to_exit_process && message_count < max_messages)
     {
         void *event = dora_next_event(dora_context);
@@ -32,19 +47,18 @@ int run(void *dora_context)
 
         if (ty == DoraEventType_Input)
         {
-            char* output_data = counter;
-
-            // counter[0] += 1;
-            // if (counter[0] >= 255)   
-                // counter[0] = 0;
+            size_t random_length = length_dist(engine); // 生成随机长度
+            std::string random_string = generate_random_string(random_length);
+            char* output_data = const_cast<char*>(random_string.c_str());
 
             std::string out_id = "counter_A";
-            size_t data_len = 12;
+            size_t data_len = random_string.size();
             int resultend = dora_send_output(dora_context, &out_id[0], out_id.length(), output_data, data_len);
 
             message_count++; // 递增消息计数器
 
             std::cout << "dora_send_output: out_id " << out_id << "  out_data_len: " << data_len << std::endl;
+            std::cout << "Sent random string: " << random_string << std::endl; // 打印发送的随机字符串
             std::cout << "Message count: " << message_count << std::endl; // 打印消息计数器
 
             if (resultend != 0)
@@ -87,4 +101,3 @@ int main()
     std::cout << "exit dora node A ..." << std::endl;
     return ret;
 }
-

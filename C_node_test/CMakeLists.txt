@@ -28,7 +28,6 @@ include_directories(
   ${YAMLCPP_INCLUDE_DIRS}
   $ENV{HOME}/dora/apis/c/node #dora的头文件路径 node_api.h
   #/home/nvidia/dora_project/dora/apis/c/node
-  $ENV{HOME}/dora/apis/c/operator
   
 )
 

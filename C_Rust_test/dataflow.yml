@@ -14,11 +14,3 @@ nodes:
       source: sink/target/debug/benchmark-example-sink
       inputs:
         latency: node_A/counter_A
-
-  # - id: node_B
-  #   custom:
-  #     source: python3
-  #     args: ./node.py
-  #     inputs:
-  #       input-1:
-  #         source: node_A/counter_A
