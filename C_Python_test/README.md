@@ -2,7 +2,7 @@ packet loss demo
 
 # 1. Compile the libraries needed for C Node
 
-The following assumes that you have installed dora. If not, please refer to the [documentation](https://dora-rs.ai/zh-CN/docs/guides/Installation/installinghttps://dora-rs.ai/zh-CN/docs/guides/Installation/installing).
+The following assumes that you have installed dora. If not, please refer to the [documentation](https://dora-rs.ai/zh-CN/docs/guides/Installation/installing).
 
 ~~~bash
 cd ~ && mkdir dora_project && cd dora_project
