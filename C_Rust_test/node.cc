@@ -9,8 +9,8 @@ extern "C"
 #include <ctime>
 
 bool to_exit_process;
-int message_count = 0; // 消息计数器
-const int max_messages = 10000; // 最大消息数
+int message_count = 0;
+const int max_messages = 10000;
 
 std::string generate_random_string(size_t length)
 {
@@ -32,7 +32,7 @@ int run(void *dora_context)
     to_exit_process = false;
 
     std::default_random_engine engine(static_cast<unsigned int>(time(0)));
-    std::uniform_int_distribution<> length_dist(5, 20); // 随机字符串长度范围 5 到 20
+    std::uniform_int_distribution<> length_dist(5, 20); // random string length range 5 to 20
 
     while (!to_exit_process && message_count < max_messages)
     {
@@ -47,7 +47,7 @@ int run(void *dora_context)
 
         if (ty == DoraEventType_Input)
         {
-            size_t random_length = length_dist(engine); // 生成随机长度
+            size_t random_length = length_dist(engine); // generate random length
             std::string random_string = generate_random_string(random_length);
             char* output_data = const_cast<char*>(random_string.c_str());
 
@@ -55,11 +55,11 @@ int run(void *dora_context)
             size_t data_len = random_string.size();
             int resultend = dora_send_output(dora_context, &out_id[0], out_id.length(), output_data, data_len);
 
-            message_count++; // 递增消息计数器
+            message_count++;
 
             std::cout << "dora_send_output: out_id " << out_id << "  out_data_len: " << data_len << std::endl;
-            std::cout << "Sent random string: " << random_string << std::endl; // 打印发送的随机字符串
-            std::cout << "Message count: " << message_count << std::endl; // 打印消息计数器
+            std::cout << "Sent random string: " << random_string << std::endl;
+            std::cout << "Message count: " << message_count << std::endl;
 
             if (resultend != 0)
             {

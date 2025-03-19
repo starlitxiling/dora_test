@@ -7,8 +7,8 @@ extern "C"
 #include <vector>
 
 bool to_exit_process;
-int message_count = 0; // 消息计数器
-const int max_messages = 10000; // 最大消息数
+int message_count = 0;
+const int max_messages = 10000;
 
 int run(void *dora_context)
 {
@@ -38,10 +38,10 @@ int run(void *dora_context)
             size_t data_len = 3;
             int resultend = dora_send_output(dora_context, &out_id[0], out_id.length(), output_data, data_len);
 
-            message_count++; // 递增消息计数器
+            message_count++;
 
             std::cout << "dora_send_output: out_id " << out_id << "  out_data_len: " << data_len << std::endl;
-            std::cout << "Message count: " << message_count << std::endl; // 打印消息计数器
+            std::cout << "Message count: " << message_count << std::endl;
 
             if (resultend != 0)
             {

@@ -54,11 +54,9 @@ sudo apt-get install pkg-config
 
 
 cd ~/dora_project
-git clone https://github.com/dora-rs/autoware.universe.git
-cd autoware.universe
-git checkout feature/autoware_dora
+git clone https://github.com/starlitxiling/dora_test.git
 
-cd ~/dora_project/autoware.universe/tools/C_Python_test
+cd ~/dora_project/dora_test/C_Python_test
 mkdir build && cd build
 cmake ..
 make
@@ -69,7 +67,7 @@ make
 # 4.start testing
 
 ~~~bash
-cd ~/dora_project/autoware.universe/tools/C_Python_test
+cd ~/dora_project/dora_test/C_Python_test
 dora up
 dora start dataflow.yml  --name test
 dora logs test node_B

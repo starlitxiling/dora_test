@@ -8,7 +8,7 @@ use std::str;
 fn main() -> eyre::Result<()> {
     let (_node, mut events) = DoraNode::init_from_env()?;
 
-    // 定义计数变量
+    // Defini a count variable
     let mut count = 0;
 
     while let Some(event) = events.recv() {
@@ -18,7 +18,7 @@ fn main() -> eyre::Result<()> {
                 data,
                 metadata: _,
             } => {
-                // 每次接收到 Event::Input 事件时递增计数变量
+                // Increment a count variable each time an Event::Input event is received
                 count += 1;
 
                 let array = data

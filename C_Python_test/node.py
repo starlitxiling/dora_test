@@ -15,23 +15,23 @@ class Operator:
         if dora_event["type"] == "INPUT":
             self.received_messages += 1
             data = dora_event["value"].to_numpy()
-            data_id = dora_event["id"]  # 获取消息ID
+            data_id = dora_event["id"]
             data_len = len(data)
 
             print(f"Input Data length: {data_len}")
-            # 显示消息计数
+
             print(f"Received messages: {self.received_messages}/{self.expected_messages}")
             print("=======================")
 
-            # 记录接收到的消息ID
+            # record the received message ID
             self.received_ids.add(data_id)
 
         elif dora_event["type"] == "STOP":
             print("[Python node] received stop event")
             print(f"Total messages received: {self.received_messages}/{self.expected_messages}")
 
-            # 计算缺失的消息
-            expected_ids = set(map(str, range(1, self.expected_messages + 1)))  # 假设消息ID是从 "1" 到 "expected_messages" 的字符串
+            # counting missing messages
+            expected_ids = set(map(str, range(1, self.expected_messages + 1)))
             missing_ids = expected_ids - self.received_ids
             missing_count = len(missing_ids)
 
@@ -46,7 +46,7 @@ class Operator:
         return DoraStatus.CONTINUE
 
 if __name__ == "__main__":
-    expected_messages = 10000  # 设置预期的消息总数
+    expected_messages = 10000  # set the expected total number of messages
     operator = Operator(expected_messages)
     node = Node()
     for event in node:
